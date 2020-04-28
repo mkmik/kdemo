@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kdemo
+  labels:
+    app: kdemo
+  annotations:
+    field.knot8.io/audience: /spec/template/spec/containers/~{"name":"app"}/env/~{"name":"KDEMO_AUDIENCE"}/value
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kdemo
+  template:
+    metadata:
+      labels:
+        app: kdemo
+    spec:
+      containers:
+      - name: app
+        image: ko://github.com/mkmik/kdemo
+        env:
+        - name: KDEMO_AUDIENCE
+          value: Kubernetes
+        ports:
+        - containerPort: 8080
