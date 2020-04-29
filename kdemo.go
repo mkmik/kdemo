@@ -17,7 +17,7 @@ var (
 
 func handler(w http.ResponseWriter, req *http.Request) {
 	klog.V(2)
-	fmt.Fprintf(w, "Hello, %s!\n", *audience)
+	fmt.Fprintf(w, "I now say: Hello, %s!\n", *audience)
 }
 
 func main() {
