@@ -6,6 +6,8 @@ metadata:
     app: kdemo
   annotations:
     field.knot8.io/audience: /spec/template/spec/containers/~{"name":"app"}/env/~{"name":"KDEMO_AUDIENCE"}/value
+    knot8.io/original: |
+      audience: Kubernetes
 spec:
   replicas: 3
   selector:
@@ -24,3 +26,14 @@ spec:
           value: Kubernetes
         ports:
         - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kdemo
+spec:
+  selector:
+    app: kdemo
+  ports:
+  - port: 8080
+    targetPort: 8080
